@@ -51,9 +51,7 @@ This project implements a basic data drive system similar to Google Drive. It al
     ```bash
     pip install -r requirements.txt
     ```
-
-    *Note*: You'll need to create the `requirements.txt` file by running `pip freeze > requirements.txt`.
-
+    
 4.  **Apply migrations:**
 
     ```bash
