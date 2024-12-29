@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>File: {{ file.name }}</h2>
+    <p>
+        <a href="{% url 'folder_detail' file.folder.id %}" class="btn btn-secondary">Back to folder</a>
+    </p>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">File Details</h5>
+             <p class="card-text">
+                <strong>Name:</strong> {{ file.name }}
+            </p>
+            <p class="card-text">
+                <strong>Uploaded on:</strong> {{ file.created_at }}
+            </p>
+            <p class="card-text">
+                <strong>Download:</strong>
+                <a href="{{ file.file.url }}" download="{{ file.name }}" class="btn btn-primary">Download</a>
+            </p>
+            <a href="{% url 'file_update' file.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <a href="{% url 'file_delete' file.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+        </div>
+    </div>
+{% endblock %}

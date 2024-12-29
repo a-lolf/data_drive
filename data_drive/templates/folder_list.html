@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Folders
+        {% if parent_folder %}
+            in {{ parent_folder.name}}
+        {% endif %}
+    </h2>
+    <a class="btn btn-secondary" href="{% url 'folder_create' %}">Create Folder</a>
+    {% if parent_folder %}
+        <a class="btn btn-primary" href="{% url 'folder_list' parent_folder_id=parent_folder.parent_id %}">Back</a>
+    {% endif %}
+
+    <ul class="list-group">
+        {% for folder in folders %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'folder_detail' folder.id %}">
+                   {{ folder.name }}
+                 </a>
+                 <div class="actions">
+                    <a href="{% url 'folder_update' folder.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                    <a href="{% url 'folder_delete' folder.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No folders yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

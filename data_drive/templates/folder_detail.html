@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+   <h2>Folder: {{ folder.name }}</h2>
+   <p>
+    {% if folder.parent_id %}
+        <a href="{% url 'folder_list' parent_folder_id=folder.parent_id %}">Back</a>
+     {% else %}
+         <a href="{% url 'folder_list' %}">Back</a>
+    {% endif %}
+
+</p>
+
+   <h3>Subfolders</h3>
+    <ul class="list-group">
+        {% for subfolder in folder.children.all %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <a href="{% url 'folder_detail' subfolder.id %}">
+                {{ subfolder.name }}
+               </a>
+              <div class="actions">
+                <a href="{% url 'folder_update' subfolder.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <a href="{% url 'folder_delete' subfolder.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+              </div>
+          </li>
+         {% empty %}
+            <li class="list-group-item">No subfolders yet.</li>
+         {% endfor %}
+    </ul>
+    <a class="btn btn-secondary" href="{% url 'folder_create' parent_folder_id=folder.id %}">Create Subfolder</a>
+
+    <h3>Files in this folder</h3>
+    <ul class="list-group">
+      {% for file in files %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'file_detail' file.id %}">{{ file.name }}</a>
+            <div class="actions">
+              <a href="{% url 'file_update' file.id %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+               <a href="{% url 'file_delete' file.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </div>
+           </li>
+      {% empty %}
+          <li class="list-group-item">No files here.</li>
+      {% endfor %}
+    </ul>
+    <a class="btn btn-primary" href="{% url 'file_create' folder.id %}">Upload File</a>
+
+{% endblock %}
