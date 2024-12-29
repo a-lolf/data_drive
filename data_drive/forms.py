@@ -30,8 +30,6 @@ class LoginForm(AuthenticationForm):
     pass
 
 
-
-
 class FolderForm(forms.ModelForm):
     class Meta:
         model = Folder
