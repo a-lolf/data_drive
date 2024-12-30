@@ -2,3 +2,8 @@
 db.sqlite3
 .vscode/
 __pycache__/
+pip/
+*.log
+# *.env
+*.idea/
+media/
