@@ -16,6 +16,7 @@ from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-2pg+xs^r8y&v^%6yvkzwi_oe52&ks7*m)88dbgwi#dsh*@j0@=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", []).split(",")
 
 
 # Application definition
@@ -78,7 +79,6 @@ WSGI_APPLICATION = 'data_drive_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-load_dotenv()
 
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
