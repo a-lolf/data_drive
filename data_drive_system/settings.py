@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-2pg+xs^r8y&v^%6yvkzwi_oe52&ks7*m)88dbgwi#dsh*@j0@=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", []).split(",")
+#ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", []).split(",")
+ALLOWED_HOSTS = ['data-drive.onrender.com', 'https://data-drive.onrender.com']
 CSRF_TRUSTED_ORIGINS = os.getenv("TRUSTED_ORIGINS", []).split(",")
 
 
